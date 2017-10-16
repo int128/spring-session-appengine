@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Import(MemcacheSessionConfiguration.class)
 @Documented
 @Configuration
-public @interface EnableSpringSessionMemcache {
+public @interface EnableMemcacheHttpSession {
     int maxInactiveIntervalInSeconds() default 1800;
 }

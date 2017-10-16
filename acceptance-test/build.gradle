@@ -1,0 +1,32 @@
+plugins {
+    id 'groovy'
+    id 'org.hidetake.appengine.spring.boot' version '0.9.0'
+}
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile project(':')
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'com.google.appengine:appengine-api-1.0-sdk:+'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    testCompile 'com.google.appengine:appengine-testing:+'
+    testCompile 'com.google.appengine:appengine-api-stubs:+'
+    testCompile 'com.google.appengine:appengine-tools-sdk:+'
+    testRuntime 'cglib:cglib-nodep:3.2.5'
+    testRuntime 'org.objenesis:objenesis:2.6'
+}
+
+configurations.all {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    exclude group: 'org.slf4j', module: 'jul-to-slf4j'
+}

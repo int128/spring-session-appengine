@@ -1,0 +1,3 @@
+logging:
+  level:
+    org.hidetake.spring.session.appengine: DEBUG
