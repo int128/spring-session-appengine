@@ -1,8 +1,8 @@
 plugins {
     id 'groovy'
+    id 'org.springframework.boot' version '1.5.7.RELEASE'
     id 'org.hidetake.appengine.spring.boot' version '0.9.0'
 }
-apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -15,6 +15,7 @@ dependencies {
     compile project(':')
     compile 'org.codehaus.groovy:groovy-all:2.4.7'
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.session:spring-session'
     compile 'com.google.appengine:appengine-api-1.0-sdk:+'
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 

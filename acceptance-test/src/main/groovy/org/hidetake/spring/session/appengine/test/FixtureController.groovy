@@ -1,25 +1,25 @@
 package org.hidetake.spring.session.appengine.test
 
-import groovy.util.logging.Slf4j
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.SessionAttributes
 
-@Slf4j
 @RestController
+@SessionAttributes('exampleModel')
 class FixtureController {
-    @Autowired
-    SessionContext context
+    @ModelAttribute('exampleModel')
+    ExampleModel exampleModel() {
+        new ExampleModel()
+    }
 
     @GetMapping('/value')
-    int get() {
-        log.debug("context=$context")
-        context.value
+    int get(ExampleModel exampleModel) {
+        exampleModel.value
     }
 
     @GetMapping('/increment')
-    int increment() {
-        log.debug("context=$context")
-        context.value = context.value + 1
+    int increment(ExampleModel exampleModel) {
+        exampleModel.value = exampleModel.value + 1
     }
 }

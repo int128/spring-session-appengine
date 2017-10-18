@@ -5,6 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.web.support.SpringBootServletInitializer
 
 @SpringBootApplication
-@EnableMemcacheHttpSession(maxInactiveIntervalInSeconds = 5)
+@EnableMemcacheHttpSession
 class FixtureApp extends SpringBootServletInitializer {
 }

@@ -1,6 +1,8 @@
 package org.hidetake.spring.session.appengine;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.session.ExpiringSession;
 
 import java.io.Serializable;
@@ -9,15 +11,20 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-@Data
+@ToString
 public class MemcacheSession implements ExpiringSession, Serializable {
     private static final long serialVersionUID = 1L;
 
-    private final String id = UUID.randomUUID().toString();
+    @Getter private final String id = UUID.randomUUID().toString();
+    @Getter private final long creationTime = System.currentTimeMillis();
     private final Map<String, Object> attributes = new HashMap<>();
-    private long creationTime = System.currentTimeMillis();
-    private long lastAccessedTime = creationTime;
-    private int maxInactiveIntervalInSeconds;
+
+    @Getter @Setter private long lastAccessedTime = creationTime;
+    @Getter @Setter private int maxInactiveIntervalInSeconds;
+
+    public MemcacheSession(int maxInactiveIntervalInSeconds) {
+        this.maxInactiveIntervalInSeconds = maxInactiveIntervalInSeconds;
+    }
 
     @Override
     public boolean isExpired() {

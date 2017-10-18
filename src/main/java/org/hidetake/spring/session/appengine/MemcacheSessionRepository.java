@@ -2,34 +2,32 @@ package org.hidetake.spring.session.appengine;
 
 import com.google.appengine.api.memcache.Expiration;
 import com.google.appengine.api.memcache.MemcacheService;
-import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.apachecommons.CommonsLog;
 import lombok.val;
 import org.springframework.session.SessionRepository;
 
 @CommonsLog
-@Data
+@RequiredArgsConstructor
 public class MemcacheSessionRepository implements SessionRepository<MemcacheSession> {
     private final MemcacheService memcacheService;
     private final int maxInactiveIntervalInSeconds;
 
     @Override
     public MemcacheSession createSession() {
-        val session = new MemcacheSession();
-        session.setMaxInactiveIntervalInSeconds(maxInactiveIntervalInSeconds);
+        val session = new MemcacheSession(maxInactiveIntervalInSeconds);
         if (log.isDebugEnabled()) {
-            log.debug("Created session " + session);
+            log.debug(String.format("createSession() = %s", session));
         }
         return session;
     }
 
     @Override
     public void save(MemcacheSession session) {
-        memcacheService.put(session.getId(), session,
-                Expiration.byDeltaSeconds(session.getMaxInactiveIntervalInSeconds()));
         if (log.isDebugEnabled()) {
-            log.debug("Saved session " + session);
+            log.debug(String.format("save(%s)", session));
         }
+        memcacheService.put(session.getId(), session, Expiration.byDeltaSeconds(session.getMaxInactiveIntervalInSeconds()));
     }
 
     @Override
@@ -39,12 +37,12 @@ public class MemcacheSessionRepository implements SessionRepository<MemcacheSess
             val session = (MemcacheSession) object;
             session.setLastAccessedTime(System.currentTimeMillis());
             if (log.isDebugEnabled()) {
-                log.debug("Found session " + session);
+                log.debug(String.format("getSession(%s) = %s", id, session));
             }
             return session;
         } else {
             if (log.isDebugEnabled()) {
-                log.debug("Could not find session id=" + id);
+                log.debug(String.format("getSession(%s) = %s", id, object));
             }
             return null;
         }
@@ -52,9 +50,9 @@ public class MemcacheSessionRepository implements SessionRepository<MemcacheSess
 
     @Override
     public void delete(String id) {
-        memcacheService.delete(id);
         if (log.isDebugEnabled()) {
-            log.debug("Deleted session id=" + id);
+            log.debug(String.format("delete(%s)", id));
         }
+        memcacheService.delete(id);
     }
 }
