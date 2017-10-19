@@ -2,3 +2,7 @@ logging:
   level:
     org.springframework: DEBUG
     org.hidetake.spring.session.appengine: DEBUG
+
+spring:
+  session:
+    store-type: hash_map

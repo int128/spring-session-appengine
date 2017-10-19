@@ -3,7 +3,6 @@ package example;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -11,15 +10,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class FixtureController {
     private final Foo foo;
 
-    @GetMapping("/")
+    @GetMapping("/foo")
     @ResponseBody
     int index() {
         return foo.getCount();
     }
 
-    @PostMapping("/")
+    @GetMapping("/foo/increment")
     @ResponseBody
-    int update() {
+    int increment() {
         return foo.increment();
     }
 }
