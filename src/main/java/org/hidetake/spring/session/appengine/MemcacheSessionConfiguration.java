@@ -9,13 +9,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportAware;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
-import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
+import org.springframework.session.config.annotation.web.http.SpringHttpSessionConfiguration;
 
 @Configuration
-@EnableSpringHttpSession
 @CommonsLog
 @ToString
-public class MemcacheSessionConfiguration implements ImportAware {
+public class MemcacheSessionConfiguration extends SpringHttpSessionConfiguration implements ImportAware {
     private int maxInactiveIntervalInSeconds;
 
     public void setImportMetadata(AnnotationMetadata importMetadata) {

@@ -1,5 +1,5 @@
 plugins {
-    id 'groovy'
+    id 'java'
     id 'org.springframework.boot' version '1.5.7.RELEASE'
     id 'org.hidetake.appengine.spring.boot' version '0.9.0'
 }
@@ -13,18 +13,11 @@ repositories {
 
 dependencies {
     compile project(':')
-    compile 'org.codehaus.groovy:groovy-all:2.4.7'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.session:spring-session'
     compile 'com.google.appengine:appengine-api-1.0-sdk:+'
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
-
-    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
-    testCompile 'com.google.appengine:appengine-testing:+'
-    testCompile 'com.google.appengine:appengine-api-stubs:+'
-    testCompile 'com.google.appengine:appengine-tools-sdk:+'
-    testRuntime 'cglib:cglib-nodep:3.2.5'
-    testRuntime 'org.objenesis:objenesis:2.6'
+    compileOnly 'org.projectlombok:lombok:1.16.18'
 }
 
 configurations.all {

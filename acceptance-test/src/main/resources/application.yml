@@ -1,5 +1,4 @@
 logging:
   level:
+    org.springframework: DEBUG
     org.hidetake.spring.session.appengine: DEBUG
-
-debug: true
