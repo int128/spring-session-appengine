@@ -1,8 +1,4 @@
 logging:
   level:
-    org.springframework: DEBUG
+    org.springframework.session: DEBUG
     org.hidetake.spring.session.appengine: DEBUG
-
-spring:
-  session:
-    store-type: hash_map
