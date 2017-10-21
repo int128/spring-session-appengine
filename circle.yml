@@ -36,7 +36,7 @@ jobs:
           name: Publish
           command: |
             if [ "$CIRCLE_TAG" ]; then
-              ./gradlew bintrayUpload -PbintrayUser="$BINTRAY_USER"
+              ./gradlew bintrayUpload -PbintrayUser="$BINTRAY_USER" -PbintrayKey="$BINTRAY_KEY"
             fi
 
 deployment:
