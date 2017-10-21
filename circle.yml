@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:8
-    working_directory: ~/gradle-starter
+    working_directory: ~/spring-session-appengine
     steps:
       - checkout
 
