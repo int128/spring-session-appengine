@@ -2,9 +2,15 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8
+      - image: google/cloud-sdk:alpine
     working_directory: ~/spring-session-appengine
     steps:
+      - run:
+          name: Install
+          command: |
+            apk --update add openjdk8
+            gcloud components install app-engine-java
+
       - checkout
 
       - restore_cache:
