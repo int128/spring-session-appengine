@@ -1,1 +1,2 @@
-include 'acceptance-test'
+include 'example-app'
+include 'example-app-test'

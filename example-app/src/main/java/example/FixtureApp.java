@@ -5,6 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-@EnableMemcacheHttpSession
+@EnableMemcacheHttpSession(maxInactiveIntervalInSeconds = 3)  // for testing timeout
 public class FixtureApp extends SpringBootServletInitializer {
 }

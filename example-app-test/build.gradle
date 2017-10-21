@@ -1,0 +1,17 @@
+plugins {
+    id 'groovy'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    testCompile 'org.apache.httpcomponents:httpclient:4.5.3'
+    testCompile 'ch.qos.logback:logback-classic:1.1.11'
+    testRuntime 'org.slf4j:jcl-over-slf4j:1.7.25'
+}
+
+test.dependsOn ':example-app:appengineStart'
+test.finalizedBy ':example-app:appengineStop'

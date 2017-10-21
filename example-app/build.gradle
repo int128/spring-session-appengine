@@ -24,3 +24,10 @@ configurations.all {
     exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
     exclude group: 'org.slf4j', module: 'jul-to-slf4j'
 }
+
+appengine {
+    run {
+        // wait for Spring Boot initialization
+        startSuccessTimeout = 30
+    }
+}
